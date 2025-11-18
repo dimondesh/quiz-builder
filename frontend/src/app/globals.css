@@ -34,3 +34,8 @@ body {
   background: rgba(99, 102, 241, 0.25);
   color: #e0e7ff;
 }
+select,
+option {
+  background-color: #0f0f1d !important;
+  color: white !important;
+}

@@ -9,7 +9,8 @@ export interface Question {
   text: string;
   type: QuestionType;
   options?: Option[];
-  correctAnswer?: string;
+  correctText?: string;
+  correctBoolean?: boolean | null;
 }
 
 export interface Quiz {

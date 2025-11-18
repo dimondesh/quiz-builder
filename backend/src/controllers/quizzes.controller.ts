@@ -14,7 +14,15 @@ export const createQuiz = async (req: Request, res: Response) => {
             text: q.text,
             type: q.type,
             order: index,
-            correctAnswer: q.type === "INPUT" ? q.correctAnswer ?? null : null,
+
+            // INPUT
+            correctText: q.type === "INPUT" ? q.correctAnswer ?? null : null,
+
+            // BOOLEAN
+            correctBoolean:
+              q.type === "BOOLEAN" ? q.correctAnswer === "true" : null,
+
+            // CHECKBOX / BOOLEAN options
             options:
               q.type === "BOOLEAN" || q.type === "CHECKBOX"
                 ? {
@@ -31,8 +39,11 @@ export const createQuiz = async (req: Request, res: Response) => {
     });
 
     res.status(201).json(quiz);
-  } catch {
-    res.status(500).json({ message: "Failed to create quiz" });
+  } catch (err) {
+    console.error("❌ CREATE QUIZ ERROR:", err);
+    return res
+      .status(500)
+      .json({ error: "Failed to create quiz", details: err });
   }
 };
 

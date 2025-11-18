@@ -6,7 +6,7 @@ interface PageProps {
 }
 
 export default async function QuizDetailPage(props: PageProps) {
-  const { id } = await props.params; // <-- ВАЖНО
+  const { id } = await props.params;
 
   const quiz: Quiz = await api.get(`/quizzes/${id}`);
 

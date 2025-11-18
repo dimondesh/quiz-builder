@@ -68,7 +68,10 @@ export default function CreateQuizPage() {
         }
       }
     }
-
+    if (data.questions.length === 0) {
+      alert("Quiz must contain at least one question.");
+      return;
+    }
     await api.post("/quizzes", data);
 
     setSuccess(true);
@@ -130,8 +133,15 @@ export default function CreateQuizPage() {
                   </div>
                   <button
                     type="button"
+                    disabled={fields.length === 1}
                     onClick={() => remove(index)}
-                    className="text-sm font-semibold text-red-400 transition hover:text-red-300"
+                    className={`text-sm font-semibold transition
+    ${
+      fields.length === 1
+        ? "text-gray-600 cursor-not-allowed"
+        : "text-red-400 hover:text-red-300"
+    }
+  `}
                   >
                     Remove
                   </button>

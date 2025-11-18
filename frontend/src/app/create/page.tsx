@@ -180,7 +180,7 @@ export default function CreateQuizPage() {
                           onClick={() =>
                             setValue(
                               `questions.${index}.type`,
-                              val as QuestionType, // <── FIX
+                              val as QuestionType,
                               { shouldValidate: true }
                             )
                           }
